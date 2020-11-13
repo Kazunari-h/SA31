@@ -1,3 +1,5 @@
+const axios = require("axios")
+
 document.querySelector(".button").addEventListener("click", () => {
     axios
         .get("https://wa25-ogp-api.herokuapp.com?url=https://www.youtube.com/watch?v=4Q9DWZLaY2U")
