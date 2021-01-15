@@ -35,9 +35,27 @@
             // Initialize Firebase
             firebase.initializeApp(firebaseConfig);
 
+            const db = firebase.firestore();
+
             // chatを読み込む
 
             // chatに書き込む
+
+            // table -> collection
+            // row -> doc, document
+            db.collection("chat")
+                .doc()
+                .set({
+                    text: "",
+                })
+                .then(function () {
+                    // 成功したら
+                    console.log("Document successfully written!");
+                })
+                .catch(function (error) {
+                    // 失敗したら
+                    console.error("Error writing document: ", error);
+                })
 
         </script>
     </body>
