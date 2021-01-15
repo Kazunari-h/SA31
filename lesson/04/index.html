@@ -44,11 +44,17 @@
 
             // chatを読み込む
             db.collection("chat").orderBy("createdAt")
-                .onSnapshot(function (querySnapshot) {
+                .onSnapshot((querySnapshot) => {
+                    const ul = document.getElementById("chat")
+                    ul.innerHTML = ""
                     querySnapshot.forEach((doc) => {
                         // 取得できたデータをforEach
-                    });
-                });
+                        // 取得できたデータをulタグに追加
+                        const li = document.createElement("li")
+                        li.innerText = doc.data().text
+                        ul.appendChild(li)
+                    })
+                })
 
 
             // chatに書き込む
