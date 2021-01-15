@@ -43,6 +43,13 @@
             const db = firebase.firestore();
 
             // chatを読み込む
+            db.collection("chat").orderBy("createdAt")
+                .onSnapshot(function (querySnapshot) {
+                    querySnapshot.forEach((doc) => {
+                        // 取得できたデータをforEach
+                    });
+                });
+
 
             // chatに書き込む
             document
