@@ -11,7 +11,12 @@
         <h1>
             匿名チャットへようこそ！
         </h1>
+        <input type="text" class="editor">
+        <button class="send">
+            送信
+        </button>
         <ul id="chat"></ul>
+
 
         <!-- The core Firebase JS SDK is always required and must be listed first -->
         <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-app.js"></script>
@@ -40,23 +45,35 @@
             // chatを読み込む
 
             // chatに書き込む
+            document
+                .querySelector(".send")
+                .addEventListener("click", event => {
+                    // table -> collection
+                    // row -> doc, document
+                    const editor = document.querySelector(".editor")
+                    editor.disabled = true
+                    event.target.disabled = true
 
-            // table -> collection
-            // row -> doc, document
-            db.collection("chat")
-                .doc()
-                .set({
-                    text: "",
+                    db.collection("chat")
+                        .doc()
+                        .set({
+                            text: `${editor.value}`,
+                            createdAt: new Date()
+                        })
+                        .then(function () {
+                            // 成功したら
+                            console.log("Document successfully written!");
+                            editor.value = ""
+                        })
+                        .catch(function (error) {
+                            // 失敗したら
+                            console.error("Error writing document: ", error);
+                        })
+                        .then(() => {
+                            editor.disabled = false
+                            event.target.disabled = false
+                        })
                 })
-                .then(function () {
-                    // 成功したら
-                    console.log("Document successfully written!");
-                })
-                .catch(function (error) {
-                    // 失敗したら
-                    console.error("Error writing document: ", error);
-                })
-
         </script>
     </body>
 
