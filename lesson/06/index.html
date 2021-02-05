@@ -12,7 +12,9 @@
      -->
     <div id="app">
         <input type="number" placeholder="いくら欲しい？" v-model="money">
-
+        <button v-on:click="add">
+            ?倍ボタン
+        </button>
         <p class="content" v-if="money && money > 0">
             {{ money }}円欲しい!!!!!!!!!!
         </p>    
@@ -26,6 +28,12 @@
                 return {
                     money: 10000
                     // key: value
+                }
+            },
+            // 便利な命令詰め合わせ
+            methods: {
+                add() {
+                    this.money = this.money * Math.floor(Math.random() * 10)
                 }
             }
         }).mount('#app')
