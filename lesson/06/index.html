@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vueの練習</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+    <!-- 
+        inputに文字を入力されたら、リアルタイムでpタグに反映する。
+     -->
+    <div id="app">
+        <input type="number" placeholder="いくら欲しい？" v-model="money">
+
+        <p class="content" v-if="money && money > 0">
+            {{ money }}円欲しい!!!!!!!!!!
+        </p>    
+    </div>
+    <script>
+        // Vue.createApp(設定).mount(Vueを有効にするセレクター)
+        Vue.createApp({
+            // dataという関数
+            data() {
+                // 戻り値
+                return {
+                    money: 10000
+                    // key: value
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>
